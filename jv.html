@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    
+
+    
+
+    
+    <meta name="build-version" content="__BUILD_VERSION__" />
+    <meta name="build-hash" content="__BUILD_HASH__" />
+
+    <!-- ADS -->
+    <meta name="monetag" content="df54d8c79336ff2635141cf502be8953">
+
+    <!-- Analytics -->
+    <!-- <script defer src="https://stats.menochi.su/script.js" data-website-id="67a329a5-9a04-4d4a-a062-07a6555588f9"></script> -->
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#E50914" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="FLIXER" />
+
+    <!-- iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="FLIXER" />
+
+    <!-- Firefox Meta Tags -->
+    <meta name="mozilla" content="yes" />
+    <meta name="mozilla-fullscreen" content="yes" />
+    <meta name="supported-color-schemes" content="light dark" />
+
+    <!-- Icons -->
+    <link rel="icon" href="assets/icons/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+    <link rel="mask-icon" href="https://flixer.sh/assets/icons/mask-icon.svg" color="#E50914" />
+
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.webmanifest" crossorigin="use-credentials" />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <link rel="sitemap" type="application/xml" href="assets/sitemaps/sitemap.xml" />
+
+    <!-- hreflang tags for international SEO -->
+    <link rel="alternate" hreflang="en" href="en.html" />
+    <link rel="alternate" hreflang="es" href="es.html" />
+    <link rel="alternate" hreflang="fr" href="fr.html" />
+    <link rel="alternate" hreflang="de" href="de.html" />
+    <link rel="alternate" hreflang="it" href="it.html" />
+    <link rel="alternate" hreflang="pt" href="pt.html" />
+    <link rel="alternate" hreflang="nl" href="nl.html" />
+    <link rel="alternate" hreflang="ru" href="ru.html" />
+    <link rel="alternate" hreflang="ja" href="ja.html" />
+    <link rel="alternate" hreflang="ko" href="ko.html" />
+    <link rel="alternate" hreflang="zh" href="zh.html" />
+    <link rel="alternate" hreflang="ar" href="ar.html" />
+    <link rel="alternate" hreflang="bn" href="bn.html" />
+    <link rel="alternate" hreflang="hi" href="hi.html" />
+    <link rel="alternate" hreflang="jv" href="jv.html" />
+    <link rel="alternate" hreflang="pa" href="pa.html" />
+    <link rel="alternate" hreflang="pl" href="pl.html" />
+    <link rel="alternate" hreflang="te" href="te.html" />
+    <link rel="alternate" hreflang="tr" href="tr.html" />
+    <link rel="alternate" hreflang="vi" href="vi.html" />
+    <link rel="alternate" hreflang="x-default" href="index.html" />
+    <link rel="preconnect" href="https://image.tmdb.org">
+    <link rel="preconnect" href="https://flixer.sh/api/tmdb">
+    <link rel="dns-prefetch" href="https://image.tmdb.org">
+    <link rel="dns-prefetch" href="https://api.flixer.sh/api/tmdb">
+
+    <!-- ADS SCRIPT -->
+    <script>
+        function areAdsEnabled() {
+            try {
+                const stored = localStorage.getItem('ads_enabled');
+                return stored ? JSON.parse(stored) : true;
+            } catch (error) {
+                console.error('Error reading ads setting:', error);
+                return true;
+            }
+        }
+
+        function getAdConfig() {
+            const hostname = window.location.hostname;
+
+            if (hostname === 'flixy.watch') {
+                return {
+                    zone: '9885184',
+                    script: 'https://bvtpk.com/tag.min.js',
+                    selector: 'script[data-zone="9885184"]'
+                };
+            } else if (hostname === 'flixer.sh') {
+                return {
+                    zone: '9885184',
+                    script: 'https://bvtpk.com/tag.min.js',
+                    selector: 'script[data-zone="9885184"]'
+                };
+            } else {
+                return {
+                    zone: '9885184',
+                    script: 'https://bvtpk.com/tag.min.js',
+                    selector: 'script[data-zone="9885184"]'
+                };
+            }
+        }
+
+        function loadAdScript() {
+            if (areAdsEnabled()) {
+                const config = getAdConfig();
+                const existingScript = document.querySelector(config.selector);
+
+                if (existingScript) {
+                    existingScript.remove();
+                }
+
+                if (config.zone === '9885184') {
+                    (s => {
+                        s.dataset.zone = '9885184';
+                        s.src = 'https://bvtpk.com/tag.min.js';
+                    })([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
+                } else {
+                    (function(s, u, z, p) {
+                        s.src = u, s.setAttribute('data-zone', z), p.appendChild(s);
+                    })(document.createElement('script'), config.script, config.zone, document.body || document.documentElement);
+                }
+            } else {
+                const flixyScript = document.querySelector('script[data-zone="9885184"]');
+                const flixerScript = document.querySelector('script[data-zone="9885184"]');
+
+                if (flixyScript) flixyScript.remove();
+                if (flixerScript) flixerScript.remove();
+            }
+        }
+
+        loadAdScript();
+
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'ads_enabled') {
+                loadAdScript();
+                if (typeof window.umami?.track === 'function') {
+                    try {
+                        const newValue = e.newValue ? JSON.parse(e.newValue) : true;
+                        const eventName = newValue ? 'ads-on' : 'ads-off';
+                        window.umami.track(eventName);
+                        localStorage.setItem('ads_status_last_tracked', newValue ? 'enabled' : 'disabled');
+                    } catch (error) {
+                        console.error('Error tracking ads status change from storage:', error);
+                    }
+                }
+            }
+        });
+        window.loadAdScript = loadAdScript;
+
+        function trackAdsStatusEvent() {
+            if (typeof window.umami?.track !== 'function') {
+                setTimeout(trackAdsStatusEvent, 200);
+                return;
+            }
+
+            const adsEnabled = areAdsEnabled();
+            const eventSentKey = 'ads_status_event_sent';
+            const lastStatusKey = 'ads_status_last_tracked';
+            
+            const lastTrackedStatus = localStorage.getItem(lastStatusKey);
+            const currentStatus = adsEnabled ? 'enabled' : 'disabled';
+            
+            const hasSentInitial = localStorage.getItem(eventSentKey) === 'true';
+            
+            if (!hasSentInitial) {
+                try {
+                    const eventName = adsEnabled ? 'ads-on' : 'ads-off';
+                    window.umami.track(eventName);
+                    
+                    localStorage.setItem(eventSentKey, 'true');
+                    localStorage.setItem(lastStatusKey, currentStatus);
+                } catch (error) {
+                    console.error('Error tracking ads status event:', error);
+                }
+            } else if (lastTrackedStatus !== currentStatus) {
+                try {
+                    const eventName = adsEnabled ? 'ads-on' : 'ads-off';
+                    window.umami.track(eventName);
+                    
+                    localStorage.setItem(lastStatusKey, currentStatus);
+                } catch (error) {
+                    console.error('Error tracking ads status event:', error);
+                }
+            }
+        }
+
+        trackAdsStatusEvent();
+
+        window.trackAdsStatusEvent = trackAdsStatusEvent;
+    </script>
+
+    <!--International SEO Tags-->
+    <script>
+        (function() {
+            const SEO_META_TRANSLATIONS = {
+                en: {
+                    title: 'FLIXER - Your Premium Streaming Platform',
+                    description: 'Unlimited movies & shows. Stream instantly on Flixer.',
+                    ogTitle: 'Flixer - Your Ultimate Streaming Destination',
+                    ogDescription: 'Unlimited movies & shows. Stream instantly on Flixer.',
+                    twitterTitle: 'Flixer - Your Ultimate Streaming Destination',
+                    twitterDescription: 'Unlimited movies & shows. Stream instantly on Flixer.'
+                },
+                es: {
+                    title: 'FLIXER - Tu Plataforma de Streaming Premium',
+                    description: 'Películas y series ilimitadas. Transmite al instante en Flixer.',
+                    ogTitle: 'Flixer - Tu Destino de Streaming Definitivo',
+                    ogDescription: 'Películas y series ilimitadas. Transmite al instante en Flixer.',
+                    twitterTitle: 'Flixer - Tu Destino de Streaming Definitivo',
+                    twitterDescription: 'Películas y series ilimitadas. Transmite al instante en Flixer.'
+                },
+                fr: {
+                    title: 'FLIXER - Votre Plateforme de Streaming Premium',
+                    description: 'Films et séries illimités. Diffusez instantanément sur Flixer.',
+                    ogTitle: 'Flixer - Votre Destination de Streaming Ultime',
+                    ogDescription: 'Films et séries illimités. Diffusez instantanément sur Flixer.',
+                    twitterTitle: 'Flixer - Votre Destination de Streaming Ultime',
+                    twitterDescription: 'Films et séries illimités. Diffusez instantanément sur Flixer.'
+                },
+                de: {
+                    title: 'FLIXER - Ihre Premium-Streaming-Plattform',
+                    description: 'Unbegrenzte Filme & Serien. Sofort streamen auf Flixer.',
+                    ogTitle: 'Flixer - Ihr ultimatives Streaming-Ziel',
+                    ogDescription: 'Unbegrenzte Filme & Serien. Sofort streamen auf Flixer.',
+                    twitterTitle: 'Flixer - Ihr ultimatives Streaming-Ziel',
+                    twitterDescription: 'Unbegrenzte Filme & Serien. Sofort streamen auf Flixer.'
+                },
+                it: {
+                    title: 'FLIXER - La Tua Piattaforma di Streaming Premium',
+                    description: 'Film e serie illimitati. Streaming istantaneo su Flixer.',
+                    ogTitle: 'Flixer - La Tua Destinazione di Streaming Definitiva',
+                    ogDescription: 'Film e serie illimitati. Streaming istantaneo su Flixer.',
+                    twitterTitle: 'Flixer - La Tua Destinazione di Streaming Definitiva',
+                    twitterDescription: 'Film e serie illimitati. Streaming istantaneo su Flixer.'
+                },
+                pt: {
+                    title: 'FLIXER - Sua Plataforma de Streaming Premium',
+                    description: 'Filmes e séries ilimitados. Transmita instantaneamente no Flixer.',
+                    ogTitle: 'Flixer - Seu Destino de Streaming Definitivo',
+                    ogDescription: 'Filmes e séries ilimitados. Transmita instantaneamente no Flixer.',
+                    twitterTitle: 'Flixer - Seu Destino de Streaming Definitivo',
+                    twitterDescription: 'Filmes e séries ilimitados. Transmita instantaneamente no Flixer.'
+                },
+                nl: {
+                    title: 'FLIXER - Uw Premium Streamingplatform',
+                    description: 'Onbeperkte films & series. Stream direct op Flixer.',
+                    ogTitle: 'Flixer - Uw Ultieme Streamingbestemming',
+                    ogDescription: 'Onbeperkte films & series. Stream direct op Flixer.',
+                    twitterTitle: 'Flixer - Uw Ultieme Streamingbestemming',
+                    twitterDescription: 'Onbeperkte films & series. Stream direct op Flixer.'
+                },
+                ru: {
+                    title: 'FLIXER - Ваша премиум платформа для стриминга',
+                    description: 'Неограниченные фильмы и сериалы. Смотрите мгновенно на Flixer.',
+                    ogTitle: 'Flixer - Ваше идеальное место для стриминга',
+                    ogDescription: 'Неограниченные фильмы и сериалы. Смотрите мгновенно на Flixer.',
+                    twitterTitle: 'Flixer - Ваше идеальное место для стриминга',
+                    twitterDescription: 'Неограниченные фильмы и сериалы. Смотрите мгновенно на Flixer.'
+                },
+                ja: {
+                    title: 'FLIXER - あなたのプレミアムストリーミングプラットフォーム',
+                    description: '無制限の映画＆番組。Flixerで即座にストリーミング。',
+                    ogTitle: 'Flixer - あなたの究極のストリーミングデスティネーション',
+                    ogDescription: '無制限の映画＆番組。Flixerで即座にストリーミング。',
+                    twitterTitle: 'Flixer - あなたの究極のストリーミングデスティネーション',
+                    twitterDescription: '無制限の映画＆番組。Flixerで即座にストリーミング。'
+                },
+                ko: {
+                    title: 'FLIXER - 프리미엄 스트리밍 플랫폼',
+                    description: '무제한 영화 및 쇼. Flixer에서 즉시 스트리밍하세요.',
+                    ogTitle: 'Flixer - 궁극의 스트리밍 목적지',
+                    ogDescription: '무제한 영화 및 쇼. Flixer에서 즉시 스트리밍하세요.',
+                    twitterTitle: 'Flixer - 궁극의 스트리밍 목적지',
+                    twitterDescription: '무제한 영화 및 쇼. Flixer에서 즉시 스트리밍하세요.'
+                },
+                zh: {
+                    title: 'FLIXER - 您的高级流媒体平台',
+                    description: '无限电影和节目。在 Flixer 上即时流媒体。',
+                    ogTitle: 'Flixer - 您的终极流媒体目的地',
+                    ogDescription: '无限电影和节目。在 Flixer 上即时流媒体。',
+                    twitterTitle: 'Flixer - 您的终极流媒体目的地',
+                    twitterDescription: '无限电影和节目。在 Flixer 上即时流媒体。'
+                },
+                ar: {
+                    title: 'FLIXER - منصة البث المتميزة الخاصة بك',
+                    description: 'أفلام ومسلسلات غير محدودة. بث فوري على Flixer.',
+                    ogTitle: 'Flixer - وجهة البث النهائية',
+                    ogDescription: 'أفلام ومسلسلات غير محدودة. بث فوري على Flixer.',
+                    twitterTitle: 'Flixer - وجهة البث النهائية',
+                    twitterDescription: 'أفلام ومسلسلات غير محدودة. بث فوري على Flixer.'
+                },
+                bn: {
+                    title: 'FLIXER - আপনার প্রিমিয়াম স্ট্রিমিং প্ল্যাটফর্ম',
+                    description: 'সীমাহীন সিনেমা ও শো। Flixer-এ তাৎক্ষণিক স্ট্রিম করুন।',
+                    ogTitle: 'Flixer - আপনার চূড়ান্ত স্ট্রিমিং গন্তব্য',
+                    ogDescription: 'সীমাহীন সিনেমা ও শো। Flixer-এ তাৎক্ষণিক স্ট্রিম করুন।',
+                    twitterTitle: 'Flixer - আপনার চূড়ান্ত স্ট্রিমিং গন্তব্য',
+                    twitterDescription: 'সীমাহীন সিনেমা ও শো। Flixer-এ তাৎক্ষণিক স্ট্রিম করুন।'
+                },
+                hi: {
+                    title: 'FLIXER - आपका प्रीमियम स्ट्रीमिंग प्लेटफॉर्म',
+                    description: 'असीमित फिल्में और शो। Flixer पर तुरंत स्ट्रीम करें।',
+                    ogTitle: 'Flixer - आपका अंतिम स्ट्रीमिंग गंतव्य',
+                    ogDescription: 'असीमित फिल्में और शो। Flixer पर तुरंत स्ट्रीम करें।',
+                    twitterTitle: 'Flixer - आपका अंतिम स्ट्रीमिंग गंतव्य',
+                    twitterDescription: 'असीमित फिल्में और शो। Flixer पर तुरंत स्ट्रीम करें।'
+                },
+                jv: {
+                    title: 'FLIXER - Platform Streaming Premium Sampeyan',
+                    description: 'Film lan acara tanpa wates. Stream langsung ing Flixer.',
+                    ogTitle: 'Flixer - Tujuan Streaming Utama Sampeyan',
+                    ogDescription: 'Film lan acara tanpa wates. Stream langsung ing Flixer.',
+                    twitterTitle: 'Flixer - Tujuan Streaming Utama Sampeyan',
+                    twitterDescription: 'Film lan acara tanpa wates. Stream langsung ing Flixer.'
+                },
+                pa: {
+                    title: 'FLIXER - ਤੁਹਾਡਾ ਪ੍ਰੀਮੀਅਮ ਸਟ੍ਰੀਮਿੰਗ ਪਲੇਟਫਾਰਮ',
+                    description: 'ਅਸੀਮਤ ਫਿਲਮਾਂ ਅਤੇ ਸ਼ੋਅ। Flixer ਤੇ ਤੁਰੰਤ ਸਟ੍ਰੀਮ ਕਰੋ।',
+                    ogTitle: 'Flixer - ਤੁਹਾਡੀ ਅੰਤਿਮ ਸਟ੍ਰੀਮਿੰਗ ਮੰਜ਼ਿਲ',
+                    ogDescription: 'ਅਸੀਮਤ ਫਿਲਮਾਂ ਅਤੇ ਸ਼ੋਅ। Flixer ਤੇ ਤੁਰੰਤ ਸਟ੍ਰੀਮ ਕਰੋ।',
+                    twitterTitle: 'Flixer - ਤੁਹਾਡੀ ਅੰਤਿਮ ਸਟ੍ਰੀਮਿੰਗ ਮੰਜ਼ਿਲ',
+                    twitterDescription: 'ਅਸੀਮਤ ਫਿਲਮਾਂ ਅਤੇ ਸ਼ੋਅ। Flixer ਤੇ ਤੁਰੰਤ ਸਟ੍ਰੀਮ ਕਰੋ।'
+                },
+                pl: {
+                    title: 'FLIXER - Twoja Platforma Streamingu Premium',
+                    description: 'Nieograniczone filmy i seriale. Streamuj natychmiast na Flixer.',
+                    ogTitle: 'Flixer - Twoje Ultimatywne Miejsce Streamingu',
+                    ogDescription: 'Nieograniczone filmy i seriale. Streamuj natychmiast na Flixer.',
+                    twitterTitle: 'Flixer - Twoje Ultimatywne Miejsce Streamingu',
+                    twitterDescription: 'Nieograniczone filmy i seriale. Streamuj natychmiast na Flixer.'
+                },
+                te: {
+                    title: 'FLIXER - మీ ప్రీమియం స్ట్రీమింగ్ ప్లాట్‌ఫారం',
+                    description: 'అపరిమిత సినిమాలు & షోలు. Flixer లో తక్షణం స్ట్రీమ్ చేయండి.',
+                    ogTitle: 'Flixer - మీ అంతిమ స్ట్రీమింగ్ గమ్యం',
+                    ogDescription: 'అపరిమిత సినిమాలు & షోలు. Flixer లో తక్షణం స్ట్రీమ్ చేయండి.',
+                    twitterTitle: 'Flixer - మీ అంతిమ స్ట్రీమింగ్ గమ్యం',
+                    twitterDescription: 'అపరిమిత సినిమాలు & షోలు. Flixer లో తక్షణం స్ట్రీమ్ చేయండి.'
+                },
+                tr: {
+                    title: 'FLIXER - Premium Yayın Platformunuz',
+                    description: 'Sınırsız film ve dizi. Flixer\'da anında yayın yapın.',
+                    ogTitle: 'Flixer - Nihai Yayın Hedefiniz',
+                    ogDescription: 'Sınırsız film ve dizi. Flixer\'da anında yayın yapın.',
+                    twitterTitle: 'Flixer - Nihai Yayın Hedefiniz',
+                    twitterDescription: 'Sınırsız film ve dizi. Flixer\'da anında yayın yapın.'
+                },
+                vi: {
+                    title: 'FLIXER - Nền Tảng Streaming Premium Của Bạn',
+                    description: 'Phim và chương trình không giới hạn. Phát trực tiếp ngay trên Flixer.',
+                    ogTitle: 'Flixer - Điểm Đến Streaming Tối Thượng',
+                    ogDescription: 'Phim và chương trình không giới hạn. Phát trực tiếp ngay trên Flixer.',
+                    twitterTitle: 'Flixer - Điểm Đến Streaming Tối Thượng',
+                    twitterDescription: 'Phim và chương trình không giới hạn. Phát trực tiếp ngay trên Flixer.'
+                }
+            };
+
+            function updateMetaTagsForLanguage(lang) {
+                const meta = SEO_META_TRANSLATIONS[lang] || SEO_META_TRANSLATIONS.en;
+                document.title = meta.title;
+                const descriptionMeta = document.querySelector('meta[name="description"]:last-of-type');
+                if (descriptionMeta) {
+                    descriptionMeta.setAttribute('content', meta.description);
+                }
+                const ogTitle = document.querySelector('meta[property="og:title"]');
+                if (ogTitle) ogTitle.setAttribute('content', meta.ogTitle);
+                const ogDescription = document.querySelector('meta[property="og:description"]');
+                if (ogDescription) ogDescription.setAttribute('content', meta.ogDescription);
+                const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+                if (twitterTitle) twitterTitle.setAttribute('content', meta.twitterTitle);
+                const twitterDescription = document.querySelector('meta[name="twitter:description"]');
+                if (twitterDescription) twitterDescription.setAttribute('content', meta.twitterDescription);
+                document.documentElement.setAttribute('lang', lang);
+                console.log(`Meta tags updated for language: ${lang}`);
+            }
+
+            function detectSEOLanguage() {
+                const pathLang = window.location.pathname.split('/')[1];
+                if (pathLang && SEO_META_TRANSLATIONS[pathLang]) {
+                    console.log(`Language detected from URL: ${pathLang}`);
+                    return pathLang;
+                }
+                const storedLang = localStorage.getItem('preferred_language');
+                if (storedLang && SEO_META_TRANSLATIONS[storedLang]) {
+                    console.log(`Language detected from localStorage: ${storedLang}`);
+                    return storedLang;
+                }
+                const countryToLang = {
+                    'ES': 'es',
+                    'MX': 'es',
+                    'AR': 'es',
+                    'CO': 'es',
+                    'PE': 'es',
+                    'VE': 'es',
+                    'CL': 'es',
+                    'EC': 'es',
+                    'FR': 'fr',
+                    'CA': 'fr',
+                    'BE': 'fr',
+                    'CH': 'fr',
+                    'DE': 'de',
+                    'AT': 'de',
+                    'CH': 'de',
+                    'IT': 'it',
+                    'SM': 'it',
+                    'VA': 'it',
+                    'BR': 'pt',
+                    'PT': 'pt',
+                    'MZ': 'pt',
+                    'AO': 'pt',
+                    'NL': 'nl',
+                    'BE': 'nl',
+                    'SR': 'nl',
+                    'RU': 'ru',
+                    'BY': 'ru',
+                    'KZ': 'ru',
+                    'KG': 'ru',
+                    'JP': 'ja',
+                    'KR': 'ko',
+                    'CN': 'zh',
+                    'TW': 'zh',
+                    'HK': 'zh',
+                    'SG': 'zh',
+                    'SA': 'ar',
+                    'AE': 'ar',
+                    'EG': 'ar',
+                    'JO': 'ar',
+                    'LB': 'ar',
+                    'SY': 'ar',
+                    'IQ': 'ar',
+                    'BD': 'bn',
+                    'IN': 'hi',
+                    'ID': 'jv',
+                    'PK': 'pa',
+                    'IN': 'pa',
+                    'PL': 'pl',
+                    'TR': 'tr',
+                    'VN': 'vi'
+                };
+                if (window.userCountry && countryToLang[window.userCountry]) {
+                    const langFromCountry = countryToLang[window.userCountry];
+                    console.log(`Language detected from country ${window.userCountry}: ${langFromCountry}`);
+                    return langFromCountry;
+                }
+                const browserLang = navigator.language.split('-')[0];
+                if (SEO_META_TRANSLATIONS[browserLang]) {
+                    console.log(`Language detected from browser: ${browserLang}`);
+                    return browserLang;
+                }
+                console.log('Language defaulted to English');
+                return 'en';
+            }
+            const seoDetectedLang = detectSEOLanguage();
+            updateMetaTagsForLanguage(seoDetectedLang);
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'preferred_language' && e.newValue) {
+                    updateMetaTagsForLanguage(e.newValue);
+                }
+            });
+            let lastSEOLang = seoDetectedLang;
+            setInterval(() => {
+                const currentLang = localStorage.getItem('preferred_language') || seoDetectedLang;
+                if (currentLang !== lastSEOLang) {
+                    updateMetaTagsForLanguage(currentLang);
+                    lastSEOLang = currentLang;
+                }
+            }, 1000);
+            window.updateMetaTagsForLanguage = updateMetaTagsForLanguage;
+            window.SEO_META_TRANSLATIONS = SEO_META_TRANSLATIONS;
+        })();
+    </script>
+  <script type="module" crossorigin src="assets/js/index-21683734.js"></script>
+  <link rel="stylesheet" crossorigin href="assets/css/index-21683734.css">
+<link rel="manifest" href="manifest.webmanifest">
+<!-- SEO Meta Tags -->
+<title>FLIXER - Stream Movies & TV Shows Free Online | Premium Entertainment Platform</title>
+<meta name="description" content="Stream unlimited movies and TV shows for free on FLIXER. Watch the latest blockbusters, TV series, and exclusive content in HD quality.">
+<meta name="keywords" content="free movies, free tv shows, streaming, watch online, hd quality, latest releases">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="index, follow">
+<meta name="author" content="FLIXER">
+<link rel="canonical" href="jv.html">
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="FLIXER - Stream Movies & TV Shows Free Online | Premium Entertainment Platform">
+<meta property="og:description" content="Stream unlimited movies and TV shows for free on FLIXER. Watch the latest blockbusters, TV series, and exclusive content in HD quality.">
+<meta property="og:image" content="https://flixer.sh/assets/images/logo.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://flixer.sh/jv">
+<meta property="og:site_name" content="FLIXER">
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FLIXER - Stream Movies & TV Shows Free Online | Premium Entertainment Platform">
+<meta name="twitter:description" content="Stream unlimited movies and TV shows for free on FLIXER. Watch the latest blockbusters, TV series, and exclusive content in HD quality.">
+<meta name="twitter:image" content="https://flixer.sh/assets/images/logo.png">
+<meta name="twitter:site" content="@flixer">
+</head>
+
+<body>
+    <div id="root"></div>
+
+</html>
